@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { getClientReservations } from "../services/reservationServices";
 import { useLocation } from "react-router";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 function ConfirmedReservations () {
@@ -17,7 +17,7 @@ function ConfirmedReservations () {
       setExistingReservations(data);
     } else if (data.length === 0) {
       alert("No se encontraron Registros asociados a " + clientName);
-    } else console.log("There's been an error");
+    } else console.log("ERROR: fetchClientReservations");
   };
 
   useEffect(() => {
@@ -58,7 +58,7 @@ function ConfirmedReservations () {
     <>
       {clientName && existingReservations.length > 0 ? (
         <>
-          <h1>Estos son tus solicitudes, {clientName}! <br/>Cuentas con {existingReservations.length} reserva{existingReservations.length > 1 ? "s" : ""}</h1>
+          <h1>Estas son tus solicitudes, {clientName}! <br/>Cuentas con {existingReservations.length} reserva{existingReservations.length > 1 ? "s" : ""}</h1>
           <div className="card-container">
           {mapCards(existingReservations)}
           </div>
@@ -86,7 +86,7 @@ function ConfirmedReservations () {
                     onChange={handleChange}
                     className={touched.clientName && errors.clientName ? "error" : ""}
                   />
-                  {errors.clientName && touched.clientName && <div className="error-message">{errors.clientName}</div>}
+                  <ErrorMessage name="clientName" component="div" className="error-message" />
                 </div>
                 <button type="submit" className="submit-button">Buscar</button>
               </Form>

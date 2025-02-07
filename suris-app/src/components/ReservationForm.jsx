@@ -15,14 +15,14 @@ function ReservationForm () {
     const data = await getAllReservations();
     if(data){
       setExistingReservations(data)
-    } else console.log("There's been an error")
+    } else console.log("ERROR: fetchExistingReservations")
   }
 
   const fetchAllServices = async () =>{
     const data = await getAllServices();
     if(data){
       setServices(data)
-    } else console.log("There's been an error")
+    } else console.log("ERROR: fetchAllServices")
   }
 
   useEffect(()=>{
@@ -32,19 +32,21 @@ function ReservationForm () {
 
   const handleSubmit = async (values) => {
     const { fullName, serviceId, date } = values;
-    const formattedDate = date.toISOString().slice(0, 19);
+    const adjustedDate = new Date(date.getTime() - 3 * 60 * 60 * 1000);
+    const formattedDate = adjustedDate.toISOString()
 
     const payload = {
       client: fullName,
       serviceId: parseInt(serviceId),
       dateTime: formattedDate,
     };
-
+    
     const res = await addNewReservation(payload);
+    
     if (res) {
       navigate("/confirmaciones", { state: payload.client });
     } else {
-      alert("There was an issue submitting your reservation. Please try again.");
+      alert("Error al crear la reserva, por favor intenta nuevamente.");
     }
   };
 
@@ -86,7 +88,7 @@ function ReservationForm () {
 
   return (
     <>
-      <h1>Reserva una reunion con nosotros!</h1>
+      <h1>Reserva una reunión con nosotros!</h1>
 
       <Formik
         initialValues={{

@@ -7,15 +7,15 @@ function NavBar() {
   return location.pathname !== "/" ? (
     <nav className="navbar">          
         <Link to="/">
-            <button>Home</button>
+            <button>Inicio</button>
         </Link>
 
         <Link to="/reservas">
-            <button>Reservas</button>
+            <button>Reservar</button>
         </Link>
 
         <Link to="/confirmaciones">
-            <button>Confirmaciones</button>
+            <button>Ver Reservas</button>
         </Link>
     </nav>
   ) : null;
