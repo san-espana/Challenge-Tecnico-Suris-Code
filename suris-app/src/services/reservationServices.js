@@ -50,7 +50,6 @@ const getAllServices = async () => {
         }
 }
 
-
 const addNewReservation = async (payload) => {
     try {
       const response = await axios.post(url, payload);

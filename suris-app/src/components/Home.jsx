@@ -9,7 +9,7 @@ function Home () {
     <div className="card">
       <Link to="/reservas">
       <button className="home-button">
-        Reserva una reunion con nosotros!
+        Reserva una reunión con nosotros!
       </button>
       </Link>
       <Link to="/confirmaciones">

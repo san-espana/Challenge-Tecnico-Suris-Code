@@ -32,19 +32,21 @@ function ReservationForm () {
 
   const handleSubmit = async (values) => {
     const { fullName, serviceId, date } = values;
-    const formattedDate = date.toISOString().slice(0, 19);
+    const adjustedDate = new Date(date.getTime() - 3 * 60 * 60 * 1000);
+    const formattedDate = adjustedDate.toISOString()
 
     const payload = {
       client: fullName,
       serviceId: parseInt(serviceId),
       dateTime: formattedDate,
     };
-
+    
+    console.log(payload, "Payload");
     const res = await addNewReservation(payload);
     if (res) {
       navigate("/confirmaciones", { state: payload.client });
     } else {
-      alert("There was an issue submitting your reservation. Please try again.");
+      alert("Error al crear la reserva, por favor intenta nuevamente.");
     }
   };
 
@@ -86,7 +88,7 @@ function ReservationForm () {
 
   return (
     <>
-      <h1>Reserva una reunion con nosotros!</h1>
+      <h1>Reserva una reunión con nosotros!</h1>
 
       <Formik
         initialValues={{
@@ -142,9 +144,7 @@ function ReservationForm () {
                 maxTime={new Date(new Date().setHours(17, 0, 0))}
                 filterDate={(date) => filterDate(date, values.fullName)}
                 filterTime={isTimeAvailable}
-                dateFormat="yyyy-MM-dd h:mm aa"
                 placeholderText="Selecciona una fecha"
-                strictParsing
               />
               <ErrorMessage name="date" component="div" className="error-message" />
             </div>

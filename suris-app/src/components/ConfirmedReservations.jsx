@@ -58,7 +58,7 @@ function ConfirmedReservations () {
     <>
       {clientName && existingReservations.length > 0 ? (
         <>
-          <h1>Estos son tus solicitudes, {clientName}! <br/>Cuentas con {existingReservations.length} reserva{existingReservations.length > 1 ? "s" : ""}</h1>
+          <h1>Estas son tus solicitudes, {clientName}! <br/>Cuentas con {existingReservations.length} reserva{existingReservations.length > 1 ? "s" : ""}</h1>
           <div className="card-container">
           {mapCards(existingReservations)}
           </div>

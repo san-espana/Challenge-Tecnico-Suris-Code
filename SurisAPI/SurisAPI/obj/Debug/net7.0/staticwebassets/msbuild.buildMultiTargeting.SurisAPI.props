@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\SurisAPI.props" />
-</Project>
