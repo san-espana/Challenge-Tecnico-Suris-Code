@@ -144,7 +144,9 @@ function ReservationForm () {
                 maxTime={new Date(new Date().setHours(17, 0, 0))}
                 filterDate={(date) => filterDate(date, values.fullName)}
                 filterTime={isTimeAvailable}
+                dateFormat="yyyy-MM-dd h:mm aa"
                 placeholderText="Selecciona una fecha"
+                strictParsing
               />
               <ErrorMessage name="date" component="div" className="error-message" />
             </div>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { getClientReservations } from "../services/reservationServices";
 import { useLocation } from "react-router";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 function ConfirmedReservations () {
@@ -86,7 +86,7 @@ function ConfirmedReservations () {
                     onChange={handleChange}
                     className={touched.clientName && errors.clientName ? "error" : ""}
                   />
-                  {errors.clientName && touched.clientName && <div className="error-message">{errors.clientName}</div>}
+                  <ErrorMessage name="clientName" component="div" className="error-message" />
                 </div>
                 <button type="submit" className="submit-button">Buscar</button>
               </Form>
