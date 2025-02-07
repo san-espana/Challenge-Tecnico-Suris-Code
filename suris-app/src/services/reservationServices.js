@@ -7,14 +7,14 @@ const getAllReservations = async () => {
         const res = await axios.get(url)
 
         if(res.data){
-        console.log("Existing Reservations Response:", res.data)
+        console.log("Reservas:", res.data)
         return res.data
         } else {
-        console.log("No Existing Reservations")
+        console.log("No se encontraron reservas")
         }
     }
     catch (err) {
-        console.log("There's been an error while fetching the Existing Reservations", err)
+        console.log("ERROR getAllReservations: ", err)
     } 
 }
 
@@ -23,14 +23,14 @@ const getClientReservations = async (clientName) => {
         const res = await axios.get(url + "/client/" + clientName)
 
         if(res.data){
-        console.log("Existing Client Reservations Response:", res.data)
+        console.log("Reservas del cliente:", res.data)
         return res.data
         } else {
-        console.log("No Existing Client Reservations")
+        console.log("No se encontraron reservas a nombre de " + clientName)
         }
     }
     catch (err) {
-        console.log("There's been an error while fetching the Client Existing Reservations", err)
+        console.log("ERROR getClientReservations: ", err)
     } 
 }
 
@@ -39,24 +39,24 @@ const getAllServices = async () => {
           const res = await axios.get(url + "/services")
      
           if(res.data){
-            console.log("All Services Response:", res.data)
+            console.log("Servicios:", res.data)
             return res.data
           } else {
-            console.log("No Services found")
+            console.log("No se encontraron servicios")
           }
         }
         catch (err) {
-          console.log("There's been an error while fetching the Services", err)
+          console.log("ERROR getAllServices: ", err)
         }
 }
 
 const addNewReservation = async (payload) => {
     try {
       const response = await axios.post(url, payload);
-      console.log("Response from server:", response.data);
+      console.log("Reserva creada:", response.data);
       return true
     } catch (error) {
-      console.error("Error posting data:", error);
+      console.error("ERROR addNewReservation: ", error);
       return false
     }
   }

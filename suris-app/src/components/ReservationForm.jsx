@@ -15,14 +15,14 @@ function ReservationForm () {
     const data = await getAllReservations();
     if(data){
       setExistingReservations(data)
-    } else console.log("There's been an error")
+    } else console.log("ERROR: fetchExistingReservations")
   }
 
   const fetchAllServices = async () =>{
     const data = await getAllServices();
     if(data){
       setServices(data)
-    } else console.log("There's been an error")
+    } else console.log("ERROR: fetchAllServices")
   }
 
   useEffect(()=>{

@@ -17,7 +17,7 @@ function ConfirmedReservations () {
       setExistingReservations(data);
     } else if (data.length === 0) {
       alert("No se encontraron Registros asociados a " + clientName);
-    } else console.log("There's been an error");
+    } else console.log("ERROR: fetchClientReservations");
   };
 
   useEffect(() => {
