@@ -41,8 +41,8 @@ function ReservationForm () {
       dateTime: formattedDate,
     };
     
-    console.log(payload, "Payload");
     const res = await addNewReservation(payload);
+    
     if (res) {
       navigate("/confirmaciones", { state: payload.client });
     } else {
