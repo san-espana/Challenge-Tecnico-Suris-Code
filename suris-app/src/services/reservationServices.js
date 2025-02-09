@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://localhost:7237/api/reservations";
+const url = "https://localhost:7237/api/v2/reservations";
 
 const getAllReservations = async () => {
     try{
@@ -54,10 +54,19 @@ const addNewReservation = async (payload) => {
     try {
       const response = await axios.post(url, payload);
       console.log("Reserva creada:", response.data);
-      return true
+      return { success: true, message: "Reserva creada con éxito!" };
+
     } catch (error) {
-      console.error("ERROR addNewReservation: ", error);
-      return false
+      let errorMessage = "Error desconocido, por favor intenta nuevamente.";
+
+      if (error.response.data) {
+        errorMessage = error.response.data || "Hubo un problema con la solicitud.";
+      } else if (error.response.status) {
+        errorMessage = `Error del servidor: ${error.response.status}`;
+      }
+
+    console.error("ERROR addNewReservation: ", errorMessage);
+    return { success: false, message: errorMessage };
     }
   }
 
