@@ -3,7 +3,7 @@
     public enum ServiceTypes
     {
         MinimumViableProduct = 1,
-        MigrationToDotNet6,
+        MigrationToDotNet9,
         TurnkeyProject,
         StaffAugmentation,
         ArtificialIntelligenceImplementation,
