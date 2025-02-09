@@ -6,8 +6,10 @@ namespace SurisAPI.Models.Requests
     {
         [Required, StringLength(50, MinimumLength = 4)]
         public string Client { get; set; } = string.Empty;
+
         [Required]
         public int ServiceId { get; set; }
+
         [Required]
         public DateTime DateTime { get; set; }
     }

@@ -32,8 +32,7 @@ function ReservationForm () {
 
   const handleSubmit = async (values) => {
     const { fullName, serviceId, date } = values;
-    const adjustedDate = new Date(date.getTime() - 3 * 60 * 60 * 1000);
-    const formattedDate = adjustedDate.toISOString()
+    const formattedDate = date.toISOString()
 
     const payload = {
       client: fullName,
@@ -43,16 +42,17 @@ function ReservationForm () {
     
     const res = await addNewReservation(payload);
     
-    if (res) {
+    if (res.success) {
       navigate("/confirmaciones", { state: payload.client });
     } else {
-      alert("Error al crear la reserva, por favor intenta nuevamente.");
+      alert(res.message);
     }
   };
 
   const isTimeAvailable = (date) => {
     return !existingReservations.some((res) => {
       const reservationDateTime = new Date(res.dateTime);
+      
       return (
         reservationDateTime.getFullYear() === date.getFullYear() &&
         reservationDateTime.getMonth() === date.getMonth() &&
